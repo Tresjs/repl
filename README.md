@@ -1,26 +1,6 @@
-# @vue/repl
+# @tresj/sandbox
 
-Vue SFC REPL as a Vue 3 component.
-
-## Basic Usage
-
-**Note: 2.0 now supports Monaco Editor, but also requires explicitly passing in the editor to be used for tree-shaking.**
-
-### With CodeMirror Editor
-
-Basic editing experience with no intellisense. Lighter weight, fewer network requests, better for embedding use cases.
-
-```vue
-<script setup>
-import { Repl } from '@vue/repl'
-import CodeMirror from '@vue/repl/codemirror-editor'
-import '@vue/repl/style.css'
-</script>
-
-<template>
-  <Repl :editor="CodeMirror" />
-</template>
-```
+TresJS sandbox as a Vue 3 component.
 
 ### With Monaco Editor
 
@@ -28,9 +8,9 @@ With Volar support, autocomplete, type inference, and semantic highlighting. Hea
 
 ```vue
 <script setup>
-import { Repl } from '@vue/repl'
-import Monaco from '@vue/repl/monaco-editor'
-import '@vue/repl/style.css'
+import { Repl } from '@tresjs/sandbox'
+import Monaco from '@tresjs/sandbox/monaco-editor'
+import '@tresjs/sandbox/style.css'
 </script>
 
 <template>
@@ -45,8 +25,8 @@ Customize the behavior of the REPL by manually initializing the store.
 ```vue
 <script setup>
 import { watchEffect } from 'vue'
-import { Repl, ReplStore } from '@vue/repl'
-import Monaco from '@vue/repl/monaco-editor'
+import { Repl, ReplStore } from '@tresjs/sandbox'
+import Monaco from '@tresjs/sandbox/monaco-editor'
 
 // retrieve some configuration options from the URL
 const query = new URLSearchParams(location.search)

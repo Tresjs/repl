@@ -1,7 +1,7 @@
 {
-  "name": "@vue/repl",
+  "name": "@tresjs/sandbox",
   "version": "2.5.8",
-  "description": "Vue component for editing Vue components",
+  "description": "Vue component for editing TresJS based Vue components",
   "packageManager": "pnpm@8.6.10",
   "type": "module",
   "main": "dist/ssr-stub.js",
