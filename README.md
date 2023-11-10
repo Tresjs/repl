@@ -1,4 +1,4 @@
-# @tresj/sandbox
+# @tresjs/sandbox
 
 TresJS sandbox as a Vue 3 component.
 

@@ -1,34 +1,44 @@
 {
   "name": "@tresjs/sandbox",
-  "version": "2.5.8",
-  "description": "Vue component for editing TresJS based Vue components",
-  "packageManager": "pnpm@8.6.10",
   "type": "module",
-  "main": "dist/ssr-stub.js",
-  "module": "dist/vue-repl.js",
-  "files": [
-    "dist"
-  ],
-  "types": "dist/repl.d.ts",
+  "version": "1.0.0",
+  "packageManager": "pnpm@8.6.10",
+  "description": "Vue component for editing TresJS based Vue components",
+  "author": "Yaël Guilloux (https://github.com/Tahul) ",
+  "license": "MIT",
+  "homepage": "https://github.com/vuejs/repl#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuejs/repl.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vuejs/repl/issues"
+  },
   "exports": {
     ".": {
       "types": "./dist/repl.d.ts",
-      "import": "./dist/vue-repl.js",
-      "require": "./dist/ssr-stub.js"
+      "require": "./dist/ssr-stub.js",
+      "import": "./dist/vue-repl.js"
     },
     "./monaco-editor": {
       "types": "./dist/editor-types.d.ts",
-      "import": "./dist/monaco-editor.js",
-      "require": null
+      "require": null,
+      "import": "./dist/monaco-editor.js"
     },
     "./codemirror-editor": {
       "types": "./dist/editor-types.d.ts",
-      "import": "./dist/codemirror-editor.js",
-      "require": null
+      "require": null,
+      "import": "./dist/codemirror-editor.js"
     },
     "./style.css": "./dist/style.css",
     "./dist/style.css": "./dist/style.css"
   },
+  "main": "dist/ssr-stub.js",
+  "module": "dist/vue-repl.js",
+  "types": "dist/repl.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -38,42 +48,31 @@
     "release": "bumpp -r",
     "prepublishOnly": "npm run build && npm run build-types"
   },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm exec lint-staged --concurrent false"
+  "dependencies": {
+    "unocss": "^0.57.3"
   },
-  "lint-staged": {
-    "*": [
-      "prettier --write --cache --ignore-unknown"
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vuejs/repl.git"
-  },
-  "author": "Evan You",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/vuejs/repl/issues"
-  },
-  "homepage": "https://github.com/vuejs/repl#readme",
   "devDependencies": {
-    "@babel/types": "^7.22.5",
-    "@microsoft/api-extractor": "^7.36.3",
-    "@rollup/plugin-replace": "^5.0.2",
-    "@tresjs/cientos": "^3.5.1",
-    "@tresjs/core": "^3.4.1",
+    "@babel/types": "^7.23.3",
+    "@iconify-json/mdi": "^1.1.55",
+    "@microsoft/api-extractor": "^7.38.2",
+    "@rollup/plugin-replace": "^5.0.5",
+    "@tresjs/cientos": "^3.6.0",
+    "@tresjs/core": "^3.5.0",
+    "@tresjs/eslint-config-vue": "^0.2.1",
     "@types/codemirror": "^5.60.8",
-    "@types/node": "^20.4.5",
-    "@types/three": "^0.158.1",
-    "@vitejs/plugin-vue": "^4.2.3",
-    "@volar/cdn": "~1.10.5",
-    "@volar/monaco": "~1.10.5",
-    "@volar/typescript": "~1.10.5",
-    "@vue/language-service": "1.8.21",
-    "bumpp": "^9.1.1",
+    "@types/node": "^20.9.0",
+    "@types/three": "^0.158.2",
+    "@unocss/preset-web-fonts": "^0.57.3",
+    "@vitejs/plugin-vue": "^4.4.1",
+    "@volar/cdn": "~1.11.1",
+    "@volar/monaco": "~1.11.1",
+    "@volar/typescript": "~1.11.1",
+    "@vue/language-service": "1.8.22",
+    "bumpp": "^9.2.0",
     "codemirror": "^5.65.14",
-    "fflate": "^0.8.0",
+    "fflate": "^0.8.1",
     "hash-sum": "^2.0.0",
+    "kolorist": "^1.8.0",
     "lint-staged": "^13.2.3",
     "monaco-editor-core": "^0.44.0",
     "monaco-editor-textmate": "^4.0.0",
@@ -81,13 +80,15 @@
     "monaco-volar": "^0.4.0",
     "onigasm": "^2.2.5",
     "path-browserify": "^1.0.1",
+    "pathe": "^1.1.1",
     "prettier": "^3.0.0",
     "simple-git-hooks": "^2.9.0",
     "sucrase": "^3.34.0",
     "three": "^0.158.0",
-    "typescript": "^5.1.6",
-    "vite": "^4.4.7",
-    "vue": "^3.3.4",
-    "vue-tsc": "1.8.21"
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0",
+    "vite-plugin-banner": "^0.7.1",
+    "vue": "^3.3.8",
+    "vue-tsc": "1.8.22"
   }
 }

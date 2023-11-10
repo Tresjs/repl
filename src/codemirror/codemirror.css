@@ -10,7 +10,7 @@
   --function: #c25205;
   --string: #2ba46d;
   --number: #c25205;
-  --tags: #dd0000;
+  --tags: #82DBC5;
   --brackets: var(--comment);
   --qualifier: #ff6032;
   --important: var(--string);
@@ -296,7 +296,7 @@ div.CodeMirror span.CodeMirror-matchingbracket {
   color: #0b0;
 }
 div.CodeMirror span.CodeMirror-nonmatchingbracket {
-  color: #a22;
+  color: #82DBC5;
 }
 .CodeMirror-matchingtag {
   background: rgba(255, 150, 0, 0.3);

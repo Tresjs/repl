@@ -1,15 +1,17 @@
 import { version, reactive, watchEffect, watch } from 'vue'
 import { version as tresVersion } from '@tresjs/core/package.json'
+import { version as cientosVersion } from '@tresjs/cientos/package.json'
+
 import * as defaultCompiler from 'vue/compiler-sfc'
-import { compileFile } from './transform'
-import { utoa, atou } from './utils'
-import {
+import type {
   SFCScriptCompileOptions,
   SFCAsyncStyleCompileOptions,
   SFCTemplateCompileOptions,
 } from 'vue/compiler-sfc'
-import { OutputModes } from './output/types'
 import type { editor } from 'monaco-editor-core'
+import { compileFile } from './transform'
+import { utoa, atou } from './utils'
+import type { OutputModes } from './output/types'
 
 const defaultMainFile = 'src/TresApp.vue'
 
@@ -77,7 +79,7 @@ const tsconfig = {
     module: 'ESNext',
     moduleResolution: 'Bundler',
     allowImportingTsExtensions: true,
-    types: ['three']
+    types: ['three'],
   },
   vueCompilerOptions: {
     target: 3.3,
@@ -93,6 +95,7 @@ export class File {
     css: '',
     ssr: '',
   }
+
   editorViewState: editor.ICodeEditorViewState | null = null
 
   constructor(filename: string, code = '', hidden = false) {
@@ -200,8 +203,8 @@ export class ReplStore implements Store {
     defaultVueRuntimeURL = `https://cdn.jsdelivr.net/npm/@vue/runtime-dom@${version}/dist/runtime-dom.esm-browser.js`,
     defaultVueServerRendererURL = `https://cdn.jsdelivr.net/npm/@vue/server-renderer@${version}/dist/server-renderer.esm-browser.js`,
     defaultTresCoreURL = `https://cdn.jsdelivr.net/npm/@tresjs/core@${tresVersion}/dist/tres.js`,
-    defaultTresCientosURL = `https://cdn.jsdelivr.net/npm/@tresjs/cientos@${tresVersion}/dist/trescientos.js`,
-    defaultTweakpanesURL = `https://cdn.jsdelivr.net/npm/tweakpane@4.0.1/dist/tweakpane.min.js`,
+    defaultTresCientosURL = `https://cdn.jsdelivr.net/npm/@tresjs/cientos@${cientosVersion}/dist/trescientos.js`,
+    defaultTweakpanesURL = 'https://cdn.jsdelivr.net/npm/tweakpane@4.0.1/dist/tweakpane.min.js',
     defaultThreeURL = 'https://cdn.jsdelivr.net/npm/three@0.158.0/+esm',
     defaultVueUseURL = 'https://cdn.jsdelivr.net/npm/@vueuse/core@10.5.0/index.mjs',
     defaultVueUseSharedURL = 'https://cdn.jsdelivr.net/npm/@vueuse/shared@10.5.0/index.mjs',
@@ -216,7 +219,8 @@ export class ReplStore implements Store {
       for (const filename in saved) {
         setFile(files, filename, saved[filename])
       }
-    } else {
+    }
+    else {
       setFile(files, defaultMainFile, welcomeCode)
     }
 
@@ -247,8 +251,8 @@ export class ReplStore implements Store {
       typescriptLocale: undefined,
       resetFlip: true,
       dependencyVersion: {
-        '@types/three': '0.158.1'
-      }
+        '@types/three': '0.158.1',
+      },
     })
 
     this.initImportMap()
@@ -259,8 +263,8 @@ export class ReplStore implements Store {
   init() {
     watchEffect(() =>
       compileFile(this, this.state.activeFile).then(
-        (errs) => (this.state.errors = errs)
-      )
+        errs => (this.state.errors = errs),
+      ),
     )
 
     watch(
@@ -272,14 +276,14 @@ export class ReplStore implements Store {
         this.state.dependencyVersion,
       ],
       () => this.reloadLanguageTools?.(),
-      { deep: true }
+      { deep: true },
     )
 
     this.state.errors = []
     for (const file in this.state.files) {
       if (file !== defaultMainFile) {
-        compileFile(this, this.state.files[file]).then((errs) =>
-          this.state.errors.push(...errs)
+        compileFile(this, this.state.files[file]).then(errs =>
+          this.state.errors.push(...errs),
         )
       }
     }
@@ -294,14 +298,15 @@ export class ReplStore implements Store {
   setTsConfig(config: any) {
     this.state.files[tsconfigFile] = new File(
       tsconfigFile,
-      JSON.stringify(config, undefined, 2)
+      JSON.stringify(config, undefined, 2),
     )
   }
 
   getTsConfig() {
     try {
       return JSON.parse(this.state.files[tsconfigFile].code)
-    } catch {
+    }
+    catch {
       return {}
     }
   }
@@ -311,8 +316,8 @@ export class ReplStore implements Store {
   }
 
   addFile(fileOrFilename: string | File): void {
-    const file =
-      typeof fileOrFilename === 'string'
+    const file
+      = typeof fileOrFilename === 'string'
         ? new File(fileOrFilename)
         : fileOrFilename
     this.state.files[file.filename] = file
@@ -352,7 +357,8 @@ export class ReplStore implements Store {
     for (const name in files) {
       if (name === oldFilename) {
         newFiles[newFilename] = file
-      } else {
+      }
+      else {
         newFiles[name] = files[name]
       }
     }
@@ -363,7 +369,7 @@ export class ReplStore implements Store {
       this.state.mainFile = newFilename
     }
 
-    compileFile(this, file).then((errs) => (this.state.errors = errs))
+    compileFile(this, file).then(errs => (this.state.errors = errs))
   }
 
   serialize() {
@@ -379,18 +385,19 @@ export class ReplStore implements Store {
       }
       if (!Object.keys(imports).length) {
         delete files[importMapFile]
-      } else {
+      }
+      else {
         files[importMapFile] = JSON.stringify({ imports }, null, 2)
       }
     }
-    return '#' + utoa(JSON.stringify(files))
+    return `#${utoa(JSON.stringify(files))}`
   }
 
   getFiles() {
     const exported: Record<string, string> = {}
     for (const filename in this.state.files) {
-      const normalized =
-        filename === importMapFile ? filename : stripSrcPrefix(filename)
+      const normalized
+        = filename === importMapFile ? filename : stripSrcPrefix(filename)
       exported[normalized] = this.state.files[filename].code
     }
     return exported
@@ -431,41 +438,46 @@ export class ReplStore implements Store {
               'vue/server-renderer': this.defaultVueServerRendererURL,
               '@tresjs/core': this.defaultTresCoreURL,
               '@tresjs/cientos': this.defaultTresCientosURL,
-              'tweakpane': this.defaultTweakpanesURL,
-              'three': this.defaultThreeURL,
+              tweakpane: this.defaultTweakpanesURL,
+              three: this.defaultThreeURL,
               '@vueuse/core': this.defaultVueUseURL,
               '@vueuse/shared': this.defaultVueUseSharedURL,
               'vue-demi': this.defaultVueDemiURL,
             },
           },
           null,
-          2
-        )
+          2,
+        ),
       )
-    } else {
+    }
+    else {
       try {
         const json = JSON.parse(map.code)
         if (!json.imports.vue) {
           json.imports.vue = this.defaultVueRuntimeURL
-        } else {
+        }
+        else {
           json.imports.vue = fixURL(json.imports.vue)
         }
         if (!json.imports['vue/server-renderer']) {
           json.imports['vue/server-renderer'] = this.defaultVueServerRendererURL
-        } else {
+        }
+        else {
           json.imports['vue/server-renderer'] = fixURL(
-            json.imports['vue/server-renderer']
+            json.imports['vue/server-renderer'],
           )
         }
         map.code = JSON.stringify(json, null, 2)
-      } catch (e) {}
+      }
+      catch (e) {}
     }
   }
 
   getImportMap() {
     try {
       return JSON.parse(this.state.files[importMapFile].code)
-    } catch (e) {
+    }
+    catch (e) {
       this.state.errors = [
         `Syntax error in import-map.json: ${(e as Error).message}`,
       ]
@@ -516,21 +528,21 @@ export class ReplStore implements Store {
     imports['vue/server-renderer'] = this.defaultVueServerRendererURL
     this.setImportMap(importMap)
     this.forceSandboxReset()
-    console.info(`[@vue/repl] Now using default Vue version`)
+    console.info('[@vue/repl] Now using default Vue version')
   }
 }
 
 function setFile(
   files: Record<string, File>,
   filename: string,
-  content: string
+  content: string,
 ) {
   // prefix user files with src/
   // for cleaner Volar path completion when using Monaco editor
-  const normalized =
-    filename !== importMapFile &&
-    filename !== tsconfigFile &&
-    !filename.startsWith('src/')
+  const normalized
+    = filename !== importMapFile
+    && filename !== tsconfigFile
+    && !filename.startsWith('src/')
       ? `src/${filename}`
       : filename
   files[normalized] = new File(normalized, content)

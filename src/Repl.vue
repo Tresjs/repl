@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { provide, ref, toRef, computed } from 'vue'
 import SplitPane from './SplitPane.vue'
 import Output from './output/Output.vue'
-import { Store, ReplStore, SFCOptions } from './store'
-import { provide, ref, toRef, computed } from 'vue'
+import type { Store, SFCOptions } from './store'
+import { ReplStore } from './store'
 import type { EditorComponentType } from './editor/types'
 import EditorContainer from './editor/EditorContainer.vue'
+import TopBar from './editor/TopBar.vue'
 
 export interface Props {
   theme?: 'dark' | 'light'
@@ -61,7 +63,7 @@ const sfcOptions = (store.options = props.sfcOptions || {})
 if (!sfcOptions.script) {
   sfcOptions.script = {}
 }
-// @ts-ignore only needed in 3.3
+// @ts-expect-error only needed in 3.3
 sfcOptions.script.fs = {
   fileExists(file: string) {
     if (file.startsWith('/')) file = file.slice(1)
@@ -97,15 +99,16 @@ defineExpose({ reload })
 
 <template>
   <div class="vue-repl">
+    <TopBar />
     <SplitPane :layout="layout">
       <template #[editorSlotName]>
-        <EditorContainer :editorComponent="editor" />
+        <EditorContainer :editor-component="editor" />
       </template>
       <template #[outputSlotName]>
         <Output
           ref="outputRef"
-          :editorComponent="editor"
-          :showCompileOutput="props.showCompileOutput"
+          :editor-component="editor"
+          :show-compile-output="props.showCompileOutput"
           :ssr="!!props.ssr"
         />
       </template>
@@ -119,7 +122,7 @@ defineExpose({ reload })
   --bg-soft: #f8f8f8;
   --border: #ddd;
   --text-light: #888;
-  --font-code: Menlo, Monaco, Consolas, 'Courier New', monospace;
+  --font-code: 'JetBrains Mono', Monaco, Consolas, 'Courier New', monospace;
   --color-branding: #82dbc5;
   --color-branding-dark: #fbb03b;
   --header-height: 38px;
@@ -131,6 +134,21 @@ defineExpose({ reload })
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: var(--bg-soft);
+}
+
+
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/fonts/JetBrainsMono-Light.woff2') format('woff2');
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/fonts/JetBrainsMono-Light.woff2') format('woff2');
+	font-style: italic;
+	font-display: swap;
 }
 
 .dark .vue-repl {
