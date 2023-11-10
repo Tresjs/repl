@@ -6,13 +6,13 @@
   "description": "Vue component for editing TresJS based Vue components",
   "author": "Yaël Guilloux (https://github.com/Tahul) ",
   "license": "MIT",
-  "homepage": "https://github.com/vuejs/repl#readme",
+  "homepage": "https://github.com/tresjs/sandbox#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vuejs/repl.git"
+    "url": "git+https://github.com/tresjs/sandbox.git"
   },
   "bugs": {
-    "url": "https://github.com/vuejs/repl/issues"
+    "url": "https://github.com/tresjs/sandbox/issues"
   },
   "exports": {
     ".": {
@@ -44,17 +44,19 @@
     "build": "vite build",
     "build-types": "vue-tsc -p tsconfig.build.json && api-extractor run -c api-extractor.json && node scripts/cleanup.js",
     "build-preview": "vite build -c vite.preview.config.ts",
-    "format": "prettier --write .",
-    "release": "bumpp -r",
     "prepublishOnly": "npm run build && npm run build-types"
   },
   "dependencies": {
+    "@unocss/reset": "^0.57.3",
+    "@vueuse/core": "^10.6.0",
     "unocss": "^0.57.3"
   },
   "devDependencies": {
     "@babel/types": "^7.23.3",
+    "@iconify-json/carbon": "^1.1.21",
     "@iconify-json/mdi": "^1.1.55",
     "@microsoft/api-extractor": "^7.38.2",
+    "@release-it/conventional-changelog": "^7.0.2",
     "@rollup/plugin-replace": "^5.0.5",
     "@tresjs/cientos": "^3.6.0",
     "@tresjs/core": "^3.5.0",
@@ -82,6 +84,7 @@
     "path-browserify": "^1.0.1",
     "pathe": "^1.1.1",
     "prettier": "^3.0.0",
+    "release-it": "^16.2.1",
     "simple-git-hooks": "^2.9.0",
     "sucrase": "^3.34.0",
     "three": "^0.158.0",

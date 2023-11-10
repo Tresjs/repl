@@ -1,4 +1,5 @@
 import 'uno.css'
+import '@unocss/reset/tailwind-compat.css'
 
 export { default as Repl } from './Repl.vue'
 export { default as Preview } from './output/Preview.vue'

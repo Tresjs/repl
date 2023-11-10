@@ -13,6 +13,7 @@ export interface Props {
   editor: EditorComponentType
   store?: Store
   autoResize?: boolean
+  topBar?: boolean
   showCompileOutput?: boolean
   showImportMap?: boolean
   showTsConfig?: boolean
@@ -35,6 +36,7 @@ export interface Props {
 const props = withDefaults(defineProps<Props>(), {
   theme: 'light',
   store: () => new ReplStore(),
+  topBar: true,
   autoResize: true,
   showCompileOutput: true,
   showImportMap: true,
@@ -98,8 +100,8 @@ defineExpose({ reload })
 </script>
 
 <template>
-  <div class="vue-repl">
-    <TopBar />
+  <div class="tres-sandbox">
+    <TopBar v-if="topBar" />
     <SplitPane :layout="layout">
       <template #[editorSlotName]>
         <EditorContainer :editor-component="editor" />
@@ -117,7 +119,7 @@ defineExpose({ reload })
 </template>
 
 <style scoped>
-.vue-repl {
+.tres-sandbox {
   --bg: #fff;
   --bg-soft: #f8f8f8;
   --border: #ddd;
@@ -136,8 +138,6 @@ defineExpose({ reload })
   background-color: var(--bg-soft);
 }
 
-
-
 @font-face {
 	font-family: 'JetBrains Mono';
 	src: url('/fonts/JetBrainsMono-Light.woff2') format('woff2');
@@ -151,7 +151,7 @@ defineExpose({ reload })
 	font-display: swap;
 }
 
-.dark .vue-repl {
+.dark .tres-sandbox {
   --bg: #1a1a1a;
   --bg-soft: #242424;
   --border: #383838;
