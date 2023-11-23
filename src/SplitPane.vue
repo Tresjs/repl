@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive, computed, inject } from 'vue'
-import { Store } from './store'
+import type { Store } from './store'
 
 const props = defineProps<{ layout?: 'horizontal' | 'vertical' }>()
 const isVertical = computed(() => props.layout === 'vertical')
@@ -51,9 +51,9 @@ function dragEnd() {
     ref="container"
     class="split-pane"
     :class="{
-      dragging: state.dragging,
+      'dragging': state.dragging,
       'show-output': showOutput,
-      vertical: isVertical,
+      'vertical': isVertical,
     }"
     @mousemove="dragMove"
     @mouseup="dragEnd"
@@ -61,19 +61,25 @@ function dragEnd() {
   >
     <div
       class="left"
-      :style="{ [isVertical ? 'height' : 'width']: boundSplit + '%' }"
+      :style="{ [isVertical ? 'height' : 'width']: `${boundSplit}%` }"
     >
       <slot name="left" />
-      <div class="dragger" @mousedown.prevent="dragStart" />
+      <div
+        class="dragger"
+        @mousedown.prevent="dragStart"
+      />
     </div>
     <div
       class="right"
-      :style="{ [isVertical ? 'height' : 'width']: 100 - boundSplit + '%' }"
+      :style="{ [isVertical ? 'height' : 'width']: `${100 - boundSplit}%` }"
     >
       <slot name="right" />
     </div>
 
-    <button class="toggler" @click="showOutput = !showOutput">
+    <button
+      class="toggler"
+      @click="showOutput = !showOutput"
+    >
       {{ showOutput ? '< Code' : 'Output >' }}
     </button>
   </div>
@@ -82,7 +88,7 @@ function dragEnd() {
 <style scoped>
 .split-pane {
   display: flex;
-  height: 100%;
+  height: 96%;
   position: relative;
 }
 .split-pane.dragging {
