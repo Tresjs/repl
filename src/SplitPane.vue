@@ -9,8 +9,8 @@ const container = ref()
 
 // mobile only
 const store = inject('store') as Store
-const showOutput = ref(store.initialShowOutput)
-
+const showOutput = ref(store.initialShowOutput) 
+showOutput.value = true
 const state = reactive({
   dragging: false,
   split: 50,
