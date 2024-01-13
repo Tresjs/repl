@@ -205,7 +205,7 @@ export class ReplStore implements Store {
     defaultTresCoreURL = `https://cdn.jsdelivr.net/npm/@tresjs/core@${tresVersion}/dist/tres.js`,
     defaultTresCientosURL = `https://cdn.jsdelivr.net/npm/@tresjs/cientos@${cientosVersion}/dist/trescientos.js`,
     defaultTweakpanesURL = 'https://cdn.jsdelivr.net/npm/tweakpane@4.0.1/dist/tweakpane.min.js',
-    defaultThreeURL = 'https://cdn.jsdelivr.net/npm/three@0.158.0/+esm',
+    defaultThreeURL = 'https://cdn.jsdelivr.net/npm/three@0.160.0/+esm',
     defaultVueUseURL = 'https://cdn.jsdelivr.net/npm/@vueuse/core@10.5.0/index.mjs',
     defaultVueUseSharedURL = 'https://cdn.jsdelivr.net/npm/@vueuse/shared@10.5.0/index.mjs',
     defaultVueDemiURL = 'https://cdn.jsdelivr.net/npm/vue-demi@0.14.6/lib/index.mjs',
@@ -251,7 +251,7 @@ export class ReplStore implements Store {
       typescriptLocale: undefined,
       resetFlip: true,
       dependencyVersion: {
-        '@types/three': '0.158.1',
+        '@types/three': '0.160.0',
       },
     })
 

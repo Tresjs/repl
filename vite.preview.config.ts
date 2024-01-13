@@ -6,16 +6,13 @@ import { presetUno, presetIcons, presetWebFonts, transformerDirectives } from 'u
 import { lightGreen, yellow, gray, bold } from 'kolorist'
 import banner from 'vite-plugin-banner'
 import pkg from './package.json'
+import { templateCompilerOptions } from '@tresjs/core'
 
-console.log(`${lightGreen('▲')} ${gray('■')} ${yellow('⛫')} ${bold('Tres/sandbox')} v${pkg.version}`)
+console.log(`${lightGreen('▲')} ${gray('■')} ${yellow('⛫')} ${bold('Tres/repl')} v${pkg.version}`)
 
 export default defineConfig({
   plugins: [
-    vue({
-      script: {
-        defineModel: true,
-      },
-    }),
+    vue(templateCompilerOptions),
     banner({
       content: `/**\n * name: ${pkg.name}\n * version: v${
         pkg.version

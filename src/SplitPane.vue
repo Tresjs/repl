@@ -122,10 +122,11 @@ function dragEnd() {
   color: var(--text-light);
   position: absolute;
   left: 50%;
-  bottom: 20px;
+  bottom: 0;
   background-color: var(--bg);
-  padding: 8px 12px;
-  border-radius: 8px;
+  padding: 8px 12px 16px 12px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   transform: translateX(-50%);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
 }

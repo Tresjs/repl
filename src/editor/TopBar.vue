@@ -25,7 +25,7 @@ async function copyLink(e: MouseEvent) {
           alt=""
         >
         <h1 class="dark:text-light text-sm">
-          Sandbox
+          Playground
         </h1>
       </div>
       <ul class="flex items-center gap-4">

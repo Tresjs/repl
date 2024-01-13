@@ -7,7 +7,7 @@ import { ReplStore } from './store'
 import type { EditorComponentType } from './editor/types'
 import EditorContainer from './editor/EditorContainer.vue'
 import TopBar from './editor/TopBar.vue'
-
+import { templateCompilerOptions } from '@tresjs/core'
 export interface Props {
   theme?: 'dark' | 'light'
   editor: EditorComponentType
@@ -65,6 +65,7 @@ const sfcOptions = (store.options = props.sfcOptions || {})
 if (!sfcOptions.script) {
   sfcOptions.script = {}
 }
+sfcOptions.template = templateCompilerOptions.template
 // @ts-expect-error only needed in 3.3
 sfcOptions.script.fs = {
   fileExists(file: string) {

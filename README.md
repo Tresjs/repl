@@ -1,6 +1,6 @@
-# @tresjs/sandbox
+# @tresjs/repl
 
-TresJS sandbox as a Vue 3 component.
+TresJS repl as a Vue 3 component.
 
 ### With Monaco Editor
 
@@ -8,9 +8,9 @@ With Volar support, autocomplete, type inference, and semantic highlighting. Hea
 
 ```vue
 <script setup>
-import { Repl } from '@tresjs/sandbox'
-import Monaco from '@tresjs/sandbox/monaco-editor'
-import '@tresjs/sandbox/style.css'
+import { Repl } from '@tresjs/repl'
+import Monaco from '@tresjs/repl/monaco-editor'
+import '@tresjs/repl/style.css'
 </script>
 
 <template>
@@ -25,8 +25,8 @@ Customize the behavior of the REPL by manually initializing the store.
 ```vue
 <script setup>
 import { watchEffect } from 'vue'
-import { Repl, ReplStore } from '@tresjs/sandbox'
-import Monaco from '@tresjs/sandbox/monaco-editor'
+import { Repl, ReplStore } from '@tresjs/repl'
+import Monaco from '@tresjs/repl/monaco-editor'
 
 // retrieve some configuration options from the URL
 const query = new URLSearchParams(location.search)
@@ -41,7 +41,7 @@ const store = new ReplStore({
   // and default to the "preview" tab
   outputMode: query.get('outputMode') || 'preview',
 
-  // specify the default URL to import Vue runtime from in the sandbox
+  // specify the default URL to import Vue runtime from in the repl
   // default is the CDN link from jsdelivr.com with version matching Vue's version
   // from peerDependency
   defaultVueRuntimeURL: 'cdn link to vue.runtime.esm-browser.js',

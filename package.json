@@ -1,18 +1,18 @@
 {
-  "name": "@tresjs/sandbox",
+  "name": "@tresjs/repl",
   "type": "module",
   "version": "1.0.0",
   "packageManager": "pnpm@8.6.10",
   "description": "Vue component for editing TresJS based Vue components",
   "author": "Yaël Guilloux (https://github.com/Tahul) ",
   "license": "MIT",
-  "homepage": "https://github.com/tresjs/sandbox#readme",
+  "homepage": "https://github.com/tresjs/repl#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tresjs/sandbox.git"
+    "url": "git+https://github.com/tresjs/repl.git"
   },
   "bugs": {
-    "url": "https://github.com/tresjs/sandbox/issues"
+    "url": "https://github.com/tresjs/repl/issues"
   },
   "exports": {
     ".": {
@@ -47,51 +47,51 @@
     "prepublishOnly": "npm run build && npm run build-types"
   },
   "dependencies": {
-    "@unocss/reset": "^0.57.3",
-    "@vueuse/core": "^10.6.0",
-    "unocss": "^0.57.3"
+    "@unocss/reset": "^0.58.3",
+    "@vueuse/core": "^10.7.1",
+    "unocss": "^0.58.3"
   },
   "devDependencies": {
-    "@babel/types": "^7.23.3",
-    "@iconify-json/carbon": "^1.1.21",
-    "@iconify-json/mdi": "^1.1.55",
-    "@microsoft/api-extractor": "^7.38.2",
-    "@release-it/conventional-changelog": "^7.0.2",
+    "@babel/types": "^7.23.6",
+    "@iconify-json/carbon": "^1.1.27",
+    "@iconify-json/mdi": "^1.1.64",
+    "@microsoft/api-extractor": "^7.39.1",
+    "@release-it/conventional-changelog": "^8.0.1",
     "@rollup/plugin-replace": "^5.0.5",
-    "@tresjs/cientos": "^3.6.0",
-    "@tresjs/core": "^3.5.0",
+    "@tresjs/cientos": "^3.7.0",
+    "@tresjs/core": "^3.6.0",
     "@tresjs/eslint-config-vue": "^0.2.1",
-    "@types/codemirror": "^5.60.8",
-    "@types/node": "^20.9.0",
-    "@types/three": "^0.158.2",
-    "@unocss/preset-web-fonts": "^0.57.3",
-    "@vitejs/plugin-vue": "^4.4.1",
+    "@types/codemirror": "^5.60.15",
+    "@types/node": "^20.11.0",
+    "@types/three": "^0.160.0",
+    "@unocss/preset-web-fonts": "^0.58.3",
+    "@vitejs/plugin-vue": "^5.0.3",
     "@volar/cdn": "~1.11.1",
     "@volar/monaco": "~1.11.1",
     "@volar/typescript": "~1.11.1",
-    "@vue/language-service": "1.8.22",
-    "bumpp": "^9.2.0",
-    "codemirror": "^5.65.14",
+    "@vue/language-service": "1.8.27",
+    "bumpp": "^9.2.1",
+    "codemirror": "^6.0.1",
     "fflate": "^0.8.1",
     "hash-sum": "^2.0.0",
     "kolorist": "^1.8.0",
-    "lint-staged": "^13.2.3",
-    "monaco-editor-core": "^0.44.0",
+    "lint-staged": "^15.2.0",
+    "monaco-editor-core": "^0.45.0",
     "monaco-editor-textmate": "^4.0.0",
     "monaco-textmate": "^3.0.1",
     "monaco-volar": "^0.4.0",
     "onigasm": "^2.2.5",
     "path-browserify": "^1.0.1",
-    "pathe": "^1.1.1",
-    "prettier": "^3.0.0",
-    "release-it": "^16.2.1",
+    "pathe": "^1.1.2",
+    "prettier": "^3.1.1",
+    "release-it": "^17.0.1",
     "simple-git-hooks": "^2.9.0",
-    "sucrase": "^3.34.0",
-    "three": "^0.158.0",
-    "typescript": "^5.2.2",
-    "vite": "^4.5.0",
+    "sucrase": "^3.35.0",
+    "three": "^0.160.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
     "vite-plugin-banner": "^0.7.1",
-    "vue": "^3.3.8",
-    "vue-tsc": "1.8.22"
+    "vue": "^3.4.10",
+    "vue-tsc": "1.8.27"
   }
 }

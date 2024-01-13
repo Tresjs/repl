@@ -57,17 +57,26 @@ defineExpose({ reload })
 
 <style scoped>
 .output-container {
-  height: calc(100% - var(--header-height));
+  height: 100%;
   overflow: hidden;
   position: relative;
+
+  @media screen and (min-width: 768px) {
+    height: calc(100% - var(--header-height));
+  }
 }
 
 .tab-buttons {
+  display: none;
   box-sizing: border-box;
   border-bottom: 1px solid var(--border);
   background-color: var(--bg);
   height: var(--header-height);
   overflow: hidden;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
 }
 .tab-buttons button {
   padding: 0;

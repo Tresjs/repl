@@ -1,4 +1,5 @@
-import { Plugin, mergeConfig } from 'vite'
+import type { Plugin } from 'vite'
+import { mergeConfig } from 'vite'
 import base from './vite.preview.config'
 
 const genStub: Plugin = {
@@ -8,7 +9,7 @@ const genStub: Plugin = {
     this.emitFile({
       type: 'asset',
       fileName: 'ssr-stub.js',
-      source: `module.exports = {}`,
+      source: 'module.exports = {}',
     })
   },
 }
