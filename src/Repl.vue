@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { provide, ref, toRef, computed } from 'vue'
+import { provide, ref, toRef, computed, watchEffect } from 'vue'
+import { templateCompilerOptions } from '@tresjs/core'
 import SplitPane from './SplitPane.vue'
 import Output from './output/Output.vue'
 import type { Store, SFCOptions } from './store'
@@ -7,7 +8,7 @@ import { ReplStore } from './store'
 import type { EditorComponentType } from './editor/types'
 import EditorContainer from './editor/EditorContainer.vue'
 import TopBar from './editor/TopBar.vue'
-import { templateCompilerOptions } from '@tresjs/core'
+
 export interface Props {
   theme?: 'dark' | 'light'
   editor: EditorComponentType
@@ -60,30 +61,38 @@ if (!props.editor) {
 }
 
 const outputRef = ref<InstanceType<typeof Output>>()
-const { store } = props
-const sfcOptions = (store.options = props.sfcOptions || {})
-if (!sfcOptions.script) {
-  sfcOptions.script = {}
-}
-sfcOptions.template = templateCompilerOptions.template
-// @ts-expect-error only needed in 3.3
-sfcOptions.script.fs = {
-  fileExists(file: string) {
-    if (file.startsWith('/')) file = file.slice(1)
-    return !!store.state.files[file]
-  },
-  readFile(file: string) {
-    if (file.startsWith('/')) file = file.slice(1)
-    return store.state.files[file].code
-  },
-}
 
-store.init()
+watchEffect(() => {
+  const { store } = props
+  const sfcOptions = (store.options = props.sfcOptions || {})
+  sfcOptions.script ||= {}
+  sfcOptions.script.fs = {
+    fileExists(file: string) {
+      if (file.startsWith('/')) file = file.slice(1)
+      return !!store.state.files[file]
+    },
+    readFile(file: string) {
+      if (file.startsWith('/')) file = file.slice(1)
+      return store.state.files[file].code
+    },
+  }
+  const whitelist = [
+    'TresCanvas',
+    'TresLeches',
+    'TresScene',
+  ]
+  sfcOptions.template = {
+    compilerOptions: {
+      isCustomElement: (tag: string) => tag.startsWith('Tres') && !whitelist.includes(tag) || tag === 'primitive',
+    },
+  }
+})
+props.store.init()
 
 const editorSlotName = computed(() => props.layoutReverse ? 'right' : 'left')
 const outputSlotName = computed(() => props.layoutReverse ? 'left' : 'right')
 
-provide('store', store)
+provide('store', props.store)
 provide('autoresize', props.autoResize)
 provide('import-map', toRef(props, 'showImportMap'))
 provide('tsconfig', toRef(props, 'showTsConfig'))

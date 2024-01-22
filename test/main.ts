@@ -43,6 +43,11 @@ const App = {
 
     // store.setVueVersion('3.2.8')
 
+    const whitelist = [
+      'TresCanvas',
+      'TresLeches',
+      'TresScene',
+    ]
     return () =>
       h(Repl, {
         store,
@@ -56,7 +61,8 @@ const App = {
           },
           template: {
             compilerOptions: {
-              isCustomElement,
+              isCustomElement: (tag: string) => 
+                tag.startsWith('Tres') && !whitelist.includes(tag) || tag === 'primitive',
             },
           },
         },
