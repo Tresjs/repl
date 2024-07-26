@@ -20,22 +20,12 @@ export const tsconfigFile = 'tsconfig.json'
 
 const welcomeCode = `
 <script setup lang="ts">
-import { BasicShadowMap, SRGBColorSpace, NoToneMapping } from 'three';
 import { TresCanvas } from '@tresjs/core';
 import { OrbitControls } from '@tresjs/cientos';
-
-const gl = {
-  clearColor: '#82DBC5',
-  shadows: true,
-  alpha: false,
-  shadowMapType: BasicShadowMap,
-  outputColorSpace: SRGBColorSpace,
-  toneMapping: NoToneMapping,
-};
 </script>
 
 <template>
-  <TresCanvas v-bind="gl">
+  <TresCanvas window-size clear-color="#82DBC5">
     <TresPerspectiveCamera :position="[9, 9, 9]" />
     <OrbitControls />
     <TresMesh :position="[-2, 2, 0]" :rotation="[0, Math.PI, 0]">
