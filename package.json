@@ -69,7 +69,7 @@
     "@volar/cdn": "~1.11.1",
     "@volar/monaco": "~2.0.0",
     "@volar/typescript": "~2.0.0",
-    "@vue/language-service": "1.8.27",
+    "@vue/language-service": "2.0.29",
     "bumpp": "^9.3.0",
     "codemirror": "^6.0.1",
     "fflate": "^0.8.1",
