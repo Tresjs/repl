@@ -5,8 +5,8 @@ import UnoCSS from 'unocss/vite'
 import { presetUno, presetIcons, presetWebFonts, transformerDirectives } from 'unocss'
 import { lightGreen, yellow, gray, bold } from 'kolorist'
 import banner from 'vite-plugin-banner'
-import pkg from './package.json'
 import { templateCompilerOptions } from '@tresjs/core'
+import pkg from './package.json'
 
 console.log(`${lightGreen('▲')} ${gray('■')} ${yellow('⛫')} ${bold('Tres/repl')} v${pkg.version}`)
 

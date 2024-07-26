@@ -55,7 +55,7 @@ async function copyLink(e: MouseEvent) {
         </li>
         <li>
           <a
-            href="https://tresjs.org/"
+            href="https://docs.tresjs.org/"
             target="_blank"
             class="i-carbon-document dark:text-light"
           />

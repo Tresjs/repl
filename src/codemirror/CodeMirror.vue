@@ -1,7 +1,3 @@
-<template>
-  <div class="editor" ref="el"></div>
-</template>
-
 <script setup lang="ts">
 import type { ModeSpec, ModeSpecOptions } from 'codemirror'
 import { ref, onMounted, watchEffect, inject } from 'vue'
@@ -70,11 +66,18 @@ onMounted(() => {
       'resize',
       debounce(() => {
         editor.refresh()
-      })
+      }),
     )
   }
 })
 </script>
+
+<template>
+  <div
+    ref="el"
+    class="editor"
+  />
+</template>
 
 <style>
 .editor {
