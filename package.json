@@ -2,7 +2,7 @@
   "name": "@tresjs/repl",
   "type": "module",
   "version": "1.0.0",
-  "packageManager": "pnpm@8.6.10",
+  "packageManager": "pnpm@9.12.2",
   "description": "Vue component for editing TresJS based Vue components",
   "author": "Yaël Guilloux (https://github.com/Tahul) ",
   "license": "MIT",
