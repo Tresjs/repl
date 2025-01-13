@@ -56,7 +56,7 @@
     "@iconify-json/carbon": "^1.1.36",
     "@iconify-json/mdi": "^1.1.67",
     "@microsoft/api-extractor": "^7.47.3",
-    "@release-it/conventional-changelog": "^8.0.1",
+    "@release-it/conventional-changelog": "^10.0.0",
     "@rollup/plugin-replace": "^5.0.7",
     "@tresjs/cientos": "4.0.0-next.1",
     "@tresjs/core": "^4.2.2",
